@@ -4,7 +4,7 @@ module SigmoidROM #(
     parameter STRING SIG_FILE = ""  
 
 )(
-    input               clk,           
+    input                    clk,           
     input   [ADDR_WIDTH-1:0] sig_in,            
     output  [DATA_WIDTH-1:0] sig_out       
 );

@@ -1,7 +1,7 @@
-`timescale 1ns / 1ps
+`include "topology.sv"
 
 module WeightMem #(
-    parameter INTEGER NUM_WEIGHTS = 3,           // Total number of weights (depth of memory)
+    parameter INTEGER NUM_WEIGHTS = 3   ,           // Total number of weights (depth of memory)
     parameter INTEGER NUM_INPUTS = 5,            // Number of inputs per neuron
     parameter INTEGER NUM_NEURONS = 1,           // Number of neurons in the layer
     parameter INTEGER ADDR_WIDTH = 10,           // Width of the memory address
