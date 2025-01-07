@@ -1,6 +1,6 @@
-#include "VReLu.h"        // Verilator generated header for the ReLU module
+#include "VReLu.h"        // Verilator needs the .sv file you are trying to simulate renamed V__.h as an include
 #include "verilated.h"
-#include "verilated_vcd_c.h" // For VCD waveform generation
+#include "verilated_vcd_c.h" // For VCD waveform generation to view in gtkwave
 #include <iostream>
 #include <cstdint>
 
@@ -16,28 +16,27 @@ int main(int argc, char** argv) {
     relu->trace(tfp, 99);
     tfp->open("waveforms.vcd");
 
-    // Clock signal initialization
+    // Clock signal initialisation
     relu->clk = 0;
 
-    // Apply test inputs and toggle the clock
+    // Apply test inputs to ReLu.sv and toggle the clock
     for (int cycle = 0; cycle < 20; ++cycle) {
-        // Toggle clock
+
         relu->clk = !relu->clk;
 
         // Apply input on the rising edge
         if (relu->clk) {
             if (cycle == 2) {
-                relu->x = 50; // Positive input
+                relu->x = 50;
             } else if (cycle == 6) {
-                relu->x = -10; // Negative input
+                relu->x = -10; 
             } else if (cycle == 10) {
-                relu->x = 0; // Zero input
+                relu->x = 0; 
             } else if (cycle == 14) {
-                relu->x = 1024; // Large positive input
+                relu->x = 1024; 
             }
         }
 
-        // Evaluate the design
         relu->eval();
 
         // Dump signals to the waveform file
@@ -52,7 +51,6 @@ int main(int argc, char** argv) {
         }
     }
 
-    // Finalize simulation
     tfp->close();
     delete relu;
     delete tfp;
