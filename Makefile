@@ -1,7 +1,5 @@
-# Project Name
 PROJECT = ReLu
 
-# Verilog and Testbench Files
 VERILOG_SRC = $(PROJECT).sv
 TESTBENCH_SRC = $(PROJECT)_tb.cpp
 
@@ -24,7 +22,6 @@ $(SIMULATOR): $(VERILOG_SRC) $(TESTBENCH_SRC)
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILOG_SRC) $(TESTBENCH_SRC)
 	make -C $(OBJ_DIR) -f V$(PROJECT).mk
 
-# Run Simulation
 run: $(SIMULATOR)
 	$(SIMULATOR)
 
@@ -32,9 +29,7 @@ run: $(SIMULATOR)
 view: $(WAVEFORM_FILE)
 	gtkwave $(WAVEFORM_FILE)
 
-# Clean Build Files
 clean:
 	rm -rf $(OBJ_DIR) $(WAVEFORM_FILE)
 
-# Phony Targets
-.PHONY: all run view clean
+
